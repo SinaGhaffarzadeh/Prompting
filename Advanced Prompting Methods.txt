@@ -1,0 +1,59 @@
+Here we will learn some advanced prompting techniques including single CoT, Single shot reasoning, PAL, and ReAct.
+
+
+
+when we are working with LLMs with Billion Paramiters, perhabs we will not have enough capacity to fine-tune our own model. so, the  only thing we can do 
+to use them on our will be the input that we want to inject to it.
+on the other word, we need to design a strategy of thinking (A prompting strategy that aid model to return our results).
+
+- one of these strategies is interodeuced by google in 2022. an article that nemed Chain of thought prompting (How model learn to think and make reasoning).
+by this technique, we will able to reduce hallicunation of model. in this method, we have to bring up a hypotetical question and how we can reach to its 
+answer (step by step), then ask our main question. therefore, the model will answer the question by the exictance pattern in the input prompt. 
+
+- The other artichle in orrder to making prompting strategy is interdeuced by university of tokyo google in 2022 named LLM are zero-shot reasoners.
+in this artichle, they interduce a way to to reduece prompting. So, we don't need to tech the model how thinking, just bring up your question and want it
+to think step by step.
+
+A: Context
+B: Let's think step by step.
+
+- the other arthicle is interduced by CMU, 2022 named PAL: Program-aided language models ==> Generate code as an intermediate reasoning steps.
+LLM + Code interpreter
+
+By using python tools (coding), ith will solve our problem or question. To do this, we need to bring up a hypotetical question and like chain of thought
+method we give it a solotion by python scripting. 
+For example:
+
+hypotetical Q: ...
+hypotetical A:
+# part of question
+tennis_balls= 5
+# other part of question
+bought_balls = 2 * 3 tennis_balls
+# the answer is 
+answer = tennis_balls + bought_balls
+
+- the other artichle published for the way of prompting is ReAct. it is combination of chain of thought (CoT) and PAL (using python tools) techniques.
+
+ReAct ==> reason and action ==> 1- reasoning like (CoT)
+                                2- using python tools like web searching or database searching
+
+ReAct is like a loop of 3 task ==> thought + action (python tools : wikipedia, website, etc)+ observation.
+
+ReAct process example:
+you operate in loop of thought, action, observation. Your available actions are: 1- calculator (expr):
+                                                                                    computes an arithmetic expression
+                                                                                 2- web search (Query):
+                                                                                    Searches the internet
+                                                                                 3- Finish (answer):
+                                                                                    Provides the final answer
+Example of interaction:
+Query: what is 135 * 8
+Thought: I should use the calculator
+Action: calculator (135*8)
+observation: 1080
+thought: i have the result, i can finish.
+action: finish (1080)
+
+Main query: How mush is $125 in EUR?
+
